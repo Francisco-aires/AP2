@@ -7,4 +7,3 @@ def cria_mapa(dimensao):
     for i in range (0,dimensao):
         lista_mapa.append(lista_linha)
     return lista_mapa
-print(cria_mapa(10))
