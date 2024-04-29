@@ -65,6 +65,17 @@ CORES = {
 }
 
 
+def cria_mapa(dimensao):
+    lista_mapa=[]
+    lista_linha=[]
+    for i in range (0,dimensao):
+           lista_linha.append(' ')
+    for i in range (0,dimensao):
+        lista_mapa.append(lista_linha)
+    return lista_mapa
+
+
+
 lista_paises=[]
 for pais in PAISES:
     lista_paises.append(pais)
@@ -94,4 +105,5 @@ while n_nacao!=1 and n_nacao!=2 and n_nacao!=3 and n_nacao!=4 and n_nacao!=5:
         print('Opção inválida')
 print("Agora é vez de alocar seus navios de guerra!")
 
+mapa=cria_mapa(10)
 
