@@ -148,7 +148,7 @@ def cria_mapa(dimensao):
         lista_mapa.append(lista_linha)
     return lista_mapa
 
-coluna = {
+dic_coluna = {
     'a': 0,
     'A': 0,
     'b': 1,
@@ -170,6 +170,8 @@ coluna = {
     'J': 9,
     'j': 9
 } #lista pra valores pras colunas no mapa
+dic_n_linhas={'1':0,'2':1,'3':2,'4':3,'5':4,'6':5,'7':6,'8':7,'9':8,'10':9} #Dicionário para converter o número do tabuleiro (linha) no índice real da linha
+
 
 lista_paises=[]
 for pais in PAISES:
@@ -221,7 +223,33 @@ print(tabuleiro_jogo(mapa_computador))
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
-dic_n_linhas={'1':0,'2':1,'3':2,'4':3,'5':4,'6':5,'7':6,'8':7,'9':8,'10':9} #Dicionário para converter o número do tabuleiro (linha) no índice real da linha
+
+frota_jogador=PAISES[pais_jogador]
+
+for navio in frota_jogador: 
+    confirma_letra="N"
+    confirma_linha="N"
+    confirma_orientacao="N"
+    while confirma_letra=="N":
+        letra=input('Informe a letra: ')
+        if letra in dic_coluna:
+            confirma_letra="S"
+        else:
+            print("Letra inválida")
+    
+    while confirma_linha=="N":
+        linha=input('Informe a linha: ')
+        if linha in dic_n_linhas:
+            confirma_linha="S"
+        else:
+            print("Linha inválida")
+    while confirma_orientacao=='N':   
+        orientacao = input('Informe a Orientação [v | h]: ')
+        if orientacao!='v' and orientacao!='h' and orientacao!='V' and orientacao!='H':
+            print ("Orientação inválida")
+        else:
+            confirma_orientacao="S"
+
 
 
 
