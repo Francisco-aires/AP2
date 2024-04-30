@@ -121,14 +121,10 @@ def tabuleiro_jogo(mapa):
         i+=1
     print('   '+' '.join(lista_colunas))
 
-print("Computador- {0}".format(pais_computador))
+print("Computador - {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
-print("Jogador- {0}".format(pais_jogador))
+print("Jogador - {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
-
-
-
-
 
 
 
