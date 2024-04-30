@@ -144,7 +144,28 @@ def cria_mapa(dimensao):
         lista_mapa.append(lista_linha)
     return lista_mapa
 
-
+coluna = {
+    'a': 0,
+    'A': 0,
+    'b': 1,
+    'B': 1,   
+    'c': 2,
+    'C': 2,
+    'd': 3,
+    'D': 3,
+    'e': 4,
+    'E': 4,
+    'f': 5,
+    'F': 5,
+    'g': 6,
+    'G': 6,
+    'h': 7,
+    'H': 7,
+    'I': 8,
+    'i': 8,
+    'J': 9,
+    'j': 9
+} #lista pra valores pras colunas no mapa
 
 lista_paises=[]
 for pais in PAISES:
@@ -191,10 +212,14 @@ def tabuleiro_jogo(mapa):
         i+=1
     print('   '+' '.join(lista_colunas))
 
-print("Computador - {0}".format(pais_computador))
+print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
-print("Jogador - {0}".format(pais_jogador))
+print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
+
+
+
+
 
 
 
