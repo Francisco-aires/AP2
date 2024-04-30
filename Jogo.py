@@ -63,11 +63,13 @@ CORES = {
     'cyan': '\u001b[36m',
     'white': '\u001b[37m'
 }
+
 def foi_derrotado(matriz):
     for linha in matriz:
         if 'N' in linha:
             return False
     return True
+
 def aloca_navios(mapa,lista_n_blocos):
     n_colunas=len(mapa[0])-1
     for n_blocos in lista_n_blocos:
@@ -113,6 +115,7 @@ def aloca_navios(mapa,lista_n_blocos):
                     aloca='positivo'
     
     return mapa 
+
 def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
     if orientacao=='h':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
@@ -135,6 +138,7 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
                 mapa[linha+i][coluna]='N'
 
     return True
+
 def cria_mapa(dimensao):
     lista_mapa=[]
     lista_linha=[]
@@ -196,7 +200,7 @@ print(tabuleiro_jogo(mapa_computador))
 print("Jogador - {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
-
+dic_n_linhas={'1':0,'2':1,'3':2,'4':3,'5':4,'6':5,'7':6,'8':7,'9':8,'10':9} #Dicionário para converter o número do tabuleiro (linha) no índice real da linha
 
 
 
