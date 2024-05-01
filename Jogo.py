@@ -204,9 +204,9 @@ while n_nacao!=1 and n_nacao!=2 and n_nacao!=3 and n_nacao!=4 and n_nacao!=5:
         print('Opção inválida')
 print("Agora é vez de alocar seus navios de guerra!")
 
+#PRODUÇÃO DO TABULEIRO DO JOGO #####################################################
 mapa_jogador=cria_mapa(10)
 mapa_computador=cria_mapa(10)
-
 
 def tabuleiro_jogo(mapa):
     i=1
@@ -222,21 +222,30 @@ print(tabuleiro_jogo(mapa_computador))
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
+#DISTRIBUIÇÃO PEÇAS PARA JOGADORES, POR PAÍS ESCOLHIDO############################
+dic_frota_computador=PAISES[pais_computador] #frota do computador é um dicionário
+lista_n_blocos_frota_computador=[] #para alocar os navios no mapa
+for tipo_barco,quantidade in dic_frota_computador.items():
+    for i in range(0,quantidade):
+        lista_n_blocos_frota_computador.append(CONFIGURACAO[tipo_barco])
+
 
 dic_frota_jogador=PAISES[pais_jogador] #frota de jogador é um dicionário
 lista_n_blocos_frota_jogador=[] #para alocar os navios no mapa
+lista_frota_jogador=[]
 for tipo_barco,quantidade in dic_frota_jogador.items():
     for i in range(0,quantidade):
         lista_n_blocos_frota_jogador.append(CONFIGURACAO[tipo_barco])
+        lista_frota_jogador.append(tipo_barco)
 
-print(lista_n_blocos_frota_jogador)
 
-
-for n_blocos in lista_n_blocos_frota_jogador:
-    print(n_blocos)
+#ALOCAR PEÇAS###############################################
+for i in range (0,len(lista_n_blocos_frota_jogador)):
+    n_blocos=lista_n_blocos_frota_jogador[i]
+    tipo_peca=lista_frota_jogador[i]
+    print("alocar: {0} ({1} blocos)".format(tipo_peca,n_blocos))
     confirma_posicao='N'
     while confirma_posicao=='N':
-
         confirma_letra="N"
         confirma_linha="N"
         confirma_orientacao="N"
@@ -272,23 +281,3 @@ for n_blocos in lista_n_blocos_frota_jogador:
         print(tabuleiro_jogo(mapa_computador))
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
-
-        
-        
-        
-        
-        
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
