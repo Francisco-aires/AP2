@@ -215,12 +215,16 @@ def tabuleiro_jogo(mapa):
     for linha in mapa:
         print(f"{str(i):>2}"+' '+' '.join(linha))
         i+=1
-    print('   '+' '.join(lista_colunas))
+    return('   '+' '.join(lista_colunas))
+    
 
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
+
+
+
 
 #DISTRIBUIÇÃO PEÇAS PARA JOGADORES, POR PAÍS ESCOLHIDO############################
 dic_frota_computador=PAISES[pais_computador] #frota do computador é um dicionário
