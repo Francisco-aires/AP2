@@ -120,12 +120,10 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
     if orientacao=='h':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
             if (coluna+i)>len(mapa[linha])-1:
-                confirma_posicao='N'
                 return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
     
         for i in range(0,n_blocos):#posição ocupada pelo bloco
             if mapa[linha][coluna+i]=='N':
-                confirma_posicao='N'
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
                 mapa[linha][coluna+i]='N'
@@ -139,7 +137,6 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
                 mapa[linha+i][coluna]='N'
-    confirma_posicao='S'
     return ('Navio colocado!')
 
 def cria_mapa(dimensao):
@@ -226,9 +223,17 @@ print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
 
-frota_jogador=PAISES[pais_jogador]
+dic_frota_jogador=PAISES[pais_jogador] #frota de jogador é um dicionário
+lista_n_blocos_frota_jogador=[] #para alocar os navios no mapa
+for tipo_barco,quantidade in dic_frota_jogador.items():
+    for i in range(0,quantidade):
+        lista_n_blocos_frota_jogador.append(CONFIGURACAO[tipo_barco])
 
-for n_blocos in frota_jogador.values():
+print(lista_n_blocos_frota_jogador)
+
+
+for n_blocos in lista_n_blocos_frota_jogador:
+    print(n_blocos)
     confirma_posicao='N'
     while confirma_posicao=='N':
 
@@ -256,7 +261,12 @@ for n_blocos in frota_jogador.values():
                 print ("Orientação inválida")
             else:
                 confirma_orientacao="S"
-        print(posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao))
+        posicao_peca=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
+        if posicao_peca=='Navio colocado!':
+            confirma_posicao='S'
+        elif posicao_peca=='Não foi possível colocar a peça nessa posição':
+            confirma_posicao='N'
+        print(posicao_peca)
         
         print("Computador- {0}".format(pais_computador))
         print(tabuleiro_jogo(mapa_computador))
