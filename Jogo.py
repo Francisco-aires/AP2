@@ -191,12 +191,16 @@ while n_nacao!=1 and n_nacao!=2 and n_nacao!=3 and n_nacao!=4 and n_nacao!=5:
     n_nacao=int(input('Qual o número da nação da sua frota?'))
     pais_jogador=lista_paises[n_nacao-1]
     if n_nacao==1:
+        
         print("Você escolheu a nação {0}".format(lista_paises[n_nacao-1]))
     elif n_nacao==2:
+       
         print("Você escolheu a nação {0}".format(lista_paises[n_nacao-1]))
     elif n_nacao==3:
+      
         print("Você escolheu a nação {0}".format(lista_paises[n_nacao-1]))
     elif n_nacao==4:
+      
         print("Você escolheu a nação {0}".format(lista_paises[n_nacao-1]))
     elif n_nacao==5:
         print("Você escolheu a nação {0}".format(lista_paises[n_nacao-1]))
@@ -216,7 +220,6 @@ def tabuleiro_jogo(mapa):
         print(f"{str(i):>2}"+' '+' '.join(linha))
         i+=1
     return('   '+' '.join(lista_colunas))
-    
 
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
@@ -274,14 +277,16 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
                 print ("Orientação inválida")
             else:
                 confirma_orientacao="S"
-        posicao_peca=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
-        if posicao_peca=='Navio colocado!':
+        posicao_peca_jogador=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
+        if posicao_peca_jogador=='Navio colocado!':
             confirma_posicao='S'
-        elif posicao_peca=='Não foi possível colocar a peça nessa posição':
+        elif posicao_peca_jogador=='Não foi possível colocar a peça nessa posição':
             confirma_posicao='N'
-        print(posicao_peca)
+        print(posicao_peca_jogador)
         
         print("Computador- {0}".format(pais_computador))
         print(tabuleiro_jogo(mapa_computador))
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
+
+posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
