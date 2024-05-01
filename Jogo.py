@@ -9,6 +9,18 @@ CONFIGURACAO = {
     'cruzador': 2,
     'couracado': 4
 }
+# funçao para a cores
+def cor(palavra,cor):
+    if cor == 'red' or cor == 'vermelho':
+        return ('\u001b[31m{0}\u001b[0m'.format(palavra))
+    elif cor == 'blue' or cor == 'azul':
+        return ('\u001b[34m{0}\u001b[0m'.format(palavra))
+    elif cor == 'verde' or cor == 'green':
+        return ('\u001b[32m{0}\u001b[0m'.format(palavra))
+    elif cor == 'yellow' or cor == 'amarelo':
+        return ('\u001b[33m{0}\u001b[0m'.format(palavra))
+    else:
+        return('cor {0} indisponivel'.format(cor))
 
 # frotas de cada pais
 PAISES =  {'Brasil': {
@@ -70,6 +82,13 @@ def foi_derrotado(matriz):
             return False
     return True
 
+import time
+#contagem regressiva
+def contagem_regressiva(tempo):
+    for i in range(tempo, 0, -1):
+        print(i)
+        time.sleep(1)
+
 def aloca_navios(mapa,lista_n_blocos):
     n_colunas=len(mapa[0])-1
     for n_blocos in lista_n_blocos:
@@ -126,7 +145,7 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
             if mapa[linha][coluna+i]=='N':
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
-                mapa[linha][coluna+i]='N'
+                mapa[linha][coluna+i]=cor('N','verde')
     
     elif orientacao=='v':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
@@ -136,7 +155,7 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
             if mapa[linha+i][coluna]=='N':
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
-                mapa[linha+i][coluna]='N'
+                mapa[linha+i][coluna]=cor('N','verde')
     return ('Navio colocado!')
 
 def cria_mapa(dimensao):
@@ -290,3 +309,11 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         print(tabuleiro_jogo(mapa_jogador))
 
 posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
+mapa_computador = aloca_navios(mapa_computador, lista_n_blocos_frota_computador)
+print("Computador- {0}".format(pais_computador))
+print(tabuleiro_jogo(mapa_computador))
+print("Jogador- {0}".format(pais_jogador))
+print(tabuleiro_jogo(mapa_jogador))
+
+print('Iniciando a batalha naval!')
+contagem_regressiva(5)
