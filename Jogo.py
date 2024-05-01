@@ -9,6 +9,18 @@ CONFIGURACAO = {
     'cruzador': 2,
     'couracado': 4
 }
+# funçao para a cores
+def cor(palavra,cor):
+    if cor == 'red' or cor == 'vermelho':
+        return ('\u001b[31m{0}\u001b[0m'.format(palavra))
+    elif cor == 'blue' or cor == 'azul':
+        return ('\u001b[34m{0}\u001b[0m'.format(palavra))
+    elif cor == 'verde' or cor == 'green':
+        return ('\u001b[32m{0}\u001b[0m'.format(palavra))
+    elif cor == 'yellow' or cor == 'amarelo':
+        return ('\u001b[33m{0}\u001b[0m'.format(palavra))
+    else:
+        return('cor {0} indisponivel'.format(cor))
 
 # frotas de cada pais
 PAISES =  {'Brasil': {
