@@ -207,9 +207,8 @@ while n_nacao!=1 and n_nacao!=2 and n_nacao!=3 and n_nacao!=4 and n_nacao!=5:
         print('Opção inválida')
 print("Agora é vez de alocar seus navios de guerra!")
 
-mapa=cria_mapa(10)
-mapa_jogador=mapa
-mapa_computador=mapa
+mapa_jogador=cria_mapa(10)
+mapa_computador=cria_mapa(10)
 
 
 def tabuleiro_jogo(mapa):
