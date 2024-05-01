@@ -120,31 +120,34 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
     if orientacao=='h':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
             if (coluna+i)>len(mapa[linha])-1:
-                return False #peça fora do mapa
+                confirma_posicao='N'
+                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
+    
         for i in range(0,n_blocos):#posição ocupada pelo bloco
             if mapa[linha][coluna+i]=='N':
-                return False #sobreposição de peças
+                confirma_posicao='N'
+                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
                 mapa[linha][coluna+i]='N'
     
     elif orientacao=='v':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
             if (linha+i)>len(mapa)-1:
-                return False #peça fora do mapa
+                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
         for i in range(0,n_blocos): #posição ocupada pelo bloco
             if mapa[linha+i][coluna]=='N':
-                return False #sobreposição de peças
+                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
                 mapa[linha+i][coluna]='N'
-
-    return True
+    confirma_posicao='S'
+    return ('Navio colocado!')
 
 def cria_mapa(dimensao):
     lista_mapa=[]
-    lista_linha=[]
     for i in range (0,dimensao):
-           lista_linha.append(' ')
-    for i in range (0,dimensao):
+        lista_linha=[]
+        for i in range (0,dimensao):
+            lista_linha.append(' ')
         lista_mapa.append(lista_linha)
     return lista_mapa
 
@@ -226,29 +229,48 @@ print(tabuleiro_jogo(mapa_jogador))
 
 frota_jogador=PAISES[pais_jogador]
 
-for navio in frota_jogador: 
-    confirma_letra="N"
-    confirma_linha="N"
-    confirma_orientacao="N"
-    while confirma_letra=="N":
-        letra=input('Informe a letra: ')
-        if letra in dic_coluna:
-            confirma_letra="S"
-        else:
-            print("Letra inválida")
-    
-    while confirma_linha=="N":
-        linha=input('Informe a linha: ')
-        if linha in dic_n_linhas:
-            confirma_linha="S"
-        else:
-            print("Linha inválida")
-    while confirma_orientacao=='N':   
-        orientacao = input('Informe a Orientação [v | h]: ')
-        if orientacao!='v' and orientacao!='h' and orientacao!='V' and orientacao!='H':
-            print ("Orientação inválida")
-        else:
-            confirma_orientacao="S"
+for n_blocos in frota_jogador.values():
+    confirma_posicao='N'
+    while confirma_posicao=='N':
+
+        confirma_letra="N"
+        confirma_linha="N"
+        confirma_orientacao="N"
+        while confirma_letra=="N":
+            letra=input('Informe a letra: ')
+            if letra in dic_coluna:
+                confirma_letra="S"
+                coluna=dic_coluna[letra]
+            else:
+                print("Letra inválida")
+        
+        while confirma_linha=="N":
+            linha=input('Informe a linha: ')
+            if linha in dic_n_linhas:
+                confirma_linha="S"
+                linha=dic_n_linhas[linha]
+            else:
+                print("Linha inválida")
+        while confirma_orientacao=='N':   
+            orientacao = input('Informe a Orientação [v | h]: ')
+            if orientacao!='v' and orientacao!='h' and orientacao!='V' and orientacao!='H':
+                print ("Orientação inválida")
+            else:
+                confirma_orientacao="S"
+        print(posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao))
+        
+        print("Computador- {0}".format(pais_computador))
+        print(tabuleiro_jogo(mapa_computador))
+        print("Jogador- {0}".format(pais_jogador))
+        print(tabuleiro_jogo(mapa_jogador))
+
+        
+        
+        
+        
+        
+        
+        
 
 
 
