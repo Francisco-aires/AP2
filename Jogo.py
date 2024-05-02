@@ -305,14 +305,14 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         print(tabuleiro_jogo(mapa_jogador))
 
 
-posicao_peca_computador=aloca_navios(mapa_fantasma,lista_n_blocos_frota_computador)
+posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
 
 
 print('Iniciando a batalha naval!')
 contagem_regressiva(5)
 
 print("Computador- {0}".format(pais_computador))
-print(tabuleiro_jogo(mapa_computador))
+print(tabuleiro_jogo(mapa_fantasma))
 print('\n')
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
@@ -358,7 +358,7 @@ if primeiro_a_jogar==0: #computador inicia
     while foi_derrotado(mapa_computador)==False and foi_derrotado(mapa_jogador)==False:
         print(ataque_computador(mapa_jogador))
         print("Computador- {0}".format(pais_computador))
-        print(tabuleiro_jogo(mapa_computador))
+        print(tabuleiro_jogo(mapa_fantasma))
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
@@ -427,10 +427,3 @@ else: #jogador incia
             print(tabuleiro_jogo(mapa_jogador))
 
 
-        
-            
-
-
-        
-
-print(tabuleiro_jogo(mapa_fantasma))
