@@ -157,6 +157,7 @@ def posicao_suporta(mapa, n_blocos, linha, coluna, orientacao):
     
     return True  # Retorna True se o navio foi colocado com sucesso
 
+
 def cria_mapa(dimensao):
     lista_mapa=[]
     for i in range (0,dimensao):
