@@ -138,28 +138,20 @@ def aloca_navios(mapa,lista_n_blocos):
     
     return mapa 
 
-def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
-    if orientacao=='h':
-        for i in range(0,n_blocos): #posição ocupada pelo bloco
-            if (coluna+i)>len(mapa[linha])-1:
-                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
-    
-        for i in range(0,n_blocos):#posição ocupada pelo bloco
-            if mapa[linha][coluna+i]=='▓':
-                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
+def posicao_suporta(mapa, n_blocos, linha, coluna, orientacao):
+    if orientacao == 'h':
+        for i in range(0, n_blocos):  # posição ocupada pelo bloco
+            if coluna + i > len(mapa[linha]) - 1 or mapa[linha][coluna + i] != ' ':
+                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
             else:
-                mapa[linha][coluna+i]=cor('▓','verde')
-    
-    elif orientacao=='v':
-        for i in range(0,n_blocos): #posição ocupada pelo bloco
-            if (linha+i)>len(mapa)-1:
-                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
-        for i in range(0,n_blocos): #posição ocupada pelo bloco
-            if mapa[linha+i][coluna]=='▓':
-                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
+                mapa[linha][coluna + i] = cor('▓', 'verde')
+    elif orientacao == 'v':
+        for i in range(0, n_blocos):  # posição ocupada pelo bloco
+            if linha + i > len(mapa) - 1 or mapa[linha + i][coluna] != ' ':
+                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
             else:
-                mapa[linha+i][coluna]=cor('▓','verde')
-    return ('Navio colocado!')
+                mapa[linha + i][coluna] = cor('▓', 'verde')
+    return 'Navio colocado!'
 
 def cria_mapa(dimensao):
     lista_mapa=[]
@@ -271,9 +263,9 @@ for tipo_barco,quantidade in dic_frota_jogador.items():
 for i in range (0,len(lista_n_blocos_frota_jogador)):
     n_blocos=lista_n_blocos_frota_jogador[i]
     tipo_peca=lista_frota_jogador[i]
-    print("alocar: {0} ({1} blocos)".format(tipo_peca,n_blocos))
     confirma_posicao='N'
     while confirma_posicao=='N':
+        print("alocar: {0} ({1} blocos)".format(tipo_peca,n_blocos))
         confirma_letra="N"
         confirma_linha="N"
         confirma_orientacao="N"
