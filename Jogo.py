@@ -346,6 +346,7 @@ def ataque_computador(mapa_jogador):
 
 
 #Ataque Jogador##################################
+print("Coordenadas do seu disparo")
 while True:
     coluna_atacada_jogador=input('Letra:')
     if is_numero(coluna_atacada_jogador):
