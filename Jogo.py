@@ -228,6 +228,7 @@ print("Agora é vez de alocar seus navios de guerra!")
 #PRODUÇÃO DO TABULEIRO DO JOGO #####################################################
 mapa_jogador=cria_mapa(10)
 mapa_computador=cria_mapa(10)
+mapa_fantasma=cria_mapa(10)
 
 def tabuleiro_jogo(mapa):
     i=1
@@ -314,7 +315,7 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         print(tabuleiro_jogo(mapa_jogador))
 
 
-posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
+posicao_peca_computador=aloca_navios(mapa_fantasma,lista_n_blocos_frota_computador)
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
 print('\n')
@@ -325,3 +326,4 @@ print('Iniciando a batalha naval!')
 contagem_regressiva(5)
 
 
+print(tabuleiro_jogo(mapa_fantasma))
