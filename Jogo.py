@@ -256,6 +256,10 @@ for tipo_barco,quantidade in dic_frota_computador.items():
         lista_n_blocos_frota_computador.append(CONFIGURACAO[tipo_barco])
 
 
+
+
+
+
 dic_frota_jogador=PAISES[pais_jogador] #frota de jogador é um dicionário
 lista_n_blocos_frota_jogador=[] #para alocar os navios no mapa
 lista_frota_jogador=[]
@@ -263,6 +267,7 @@ for tipo_barco,quantidade in dic_frota_jogador.items():
     for i in range(0,quantidade):
         lista_n_blocos_frota_jogador.append(CONFIGURACAO[tipo_barco])
         lista_frota_jogador.append(tipo_barco)
+
 
 
 #ALOCAR PEÇAS###############################################
@@ -308,8 +313,8 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
 
+
 posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
-mapa_computador = aloca_navios(mapa_computador, lista_n_blocos_frota_computador)
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
 print("Jogador- {0}".format(pais_jogador))
@@ -317,3 +322,5 @@ print(tabuleiro_jogo(mapa_jogador))
 
 print('Iniciando a batalha naval!')
 contagem_regressiva(5)
+
+
