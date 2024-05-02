@@ -21,3 +21,11 @@ def cor(palavra,cor):
     else:
         return('cor {0} indisponivel'.format(cor))
     
+def teste(z):
+    if z == 'x':
+        return 'uuuu'
+    elif z == cor('x','verde'):
+        return 'aaaaaa'
+    
+print(teste(cor('x','verde')))
+    
