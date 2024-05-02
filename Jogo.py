@@ -167,6 +167,21 @@ def cria_mapa(dimensao):
         lista_mapa.append(lista_linha)
     return lista_mapa
 
+#vitoria ou derrota
+def verificar_vencedor(mapa_jogador, mapa_computador):
+    # Verifica se o jogador foi derrotado
+    derrota_jogador = foi_derrotado(mapa_jogador)
+    # Verifica se o computador foi derrotado
+    derrota_computador = foi_derrotado(mapa_computador)
+
+    if derrota_jogador and not derrota_computador:
+        return 0
+    elif derrota_computador and not derrota_jogador:
+        return 1
+    elif derrota_jogador and derrota_computador:
+        return 2
+
+
 dic_coluna = {
     'a': 0,
     'A': 0,
@@ -355,8 +370,8 @@ def ataque_jogador(mapa_computador, linha_atacada_jogador, n_coluna_atacada_joga
         return 'Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador, linha_atacada_jogador)
 
 
-
-
+xswi = (tabuleiro_jogo(mapa_computador))
+print(xswi)
 #Sorteio início partida#############
 primeiro_a_jogar=random.randint(0,1)
 if primeiro_a_jogar==0: #computador inicia
@@ -367,6 +382,7 @@ if primeiro_a_jogar==0: #computador inicia
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
+        print(xswi)
         condicao_ataque=0
         while condicao_ataque==0:
             print("Coordenadas do seu disparo")
@@ -397,7 +413,6 @@ if primeiro_a_jogar==0: #computador inicia
 
 else: #jogador incia
     while foi_derrotado(mapa_computador)==False and foi_derrotado(mapa_jogador)==False:
-        print("Coordenadas do seu disparo")
         condicao_ataque=0
         while condicao_ataque==0:
             print("Coordenadas do seu disparo")
@@ -428,5 +443,25 @@ else: #jogador incia
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
+        print(xswi)
 
+vencedor = verificar_vencedor(mapa_jogador,mapa_computador)
 
+if vencedor == 0:
+    print("Computador- {0}".format(pais_computador))
+    print(tabuleiro_jogo(mapa_fantasma))
+    print('\n')
+    print("Jogador- {0}".format(pais_jogador))
+    print(tabuleiro_jogo(mapa_jogador))
+    print('################################################################')
+    print('O computador venceu a batalha naval! Melhor sorte na próxima vez')
+    print('################################################################')
+else:
+    print("Computador- {0}".format(pais_computador))
+    print(tabuleiro_jogo(mapa_fantasma))
+    print('\n')
+    print("Jogador- {0}".format(pais_jogador))
+    print(tabuleiro_jogo(mapa_jogador))
+    print('################################################################')
+    print('   Parabéns! Você venceu a batalha naval contra o computador!   ')
+    print('################################################################')
