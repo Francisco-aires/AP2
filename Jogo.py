@@ -299,7 +299,7 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         print(posicao_peca_jogador)
         
         print("Computador- {0}".format(pais_computador))
-        print(tabuleiro_jogo(mapa_computador))
+        print(tabuleiro_jogo(mapa_fantasma))
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
@@ -327,29 +327,30 @@ def ataque_computador(mapa_jogador):
             condicao_ataque=0
         elif mapa_jogador[linha_atacada][coluna_atacada]==' ':
             condicao_ataque=1 #ou seja o ataque foi realizado
-            mapa_jogador[linha_atacada][coluna_atacada]='A' #nesse caso o ataque atingiu a água #trocar pela caixa azul
+            mapa_jogador[linha_atacada][coluna_atacada]=cor('▓', 'azul') #nesse caso o ataque atingiu a água #trocar pela caixa azul
             print('Computador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada,linha_atacada))
         else:
             condicao_ataque=1 #ataque realizado
-            mapa_jogador[linha_atacada][coluna_atacada]='X' # nesse caso o ataque atingiu uma embarcação #trocar x por caixa vermelha
+            mapa_jogador[linha_atacada][coluna_atacada]=cor('▓', 'vermelho') # nesse caso o ataque atingiu uma embarcação #trocar x por caixa vermelha
             print ('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada,linha_atacada))
 
 #função ataque jogador:
-def ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador):
+def ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque):
     condicao_ataque=0 #condição incial
-    while condicao_ataque==0:
-        if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='A' or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='X': #ou seja esse ponto já foi atacado
-            condicao_ataque=0
-            print('Posição {0}{1} já foi bombardeada!'.format(coluna_atacada_jogador,linha_atacada_jogador))
-        elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==' ':
-            condicao_ataque=1 #ou seja o ataque foi realizado
-            mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='A' #nesse caso o ataque atingiu a água
-            print('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador,linha_atacada_jogador))
-        else:
-            condicao_ataque=1 #ataque realizado
-            mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='X' # nesse caso o ataque atingiu uma embarcação
-            print ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador,linha_atacada_jogador))
-    
+    if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='A' or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='X': #ou seja esse ponto já foi atacado
+        condicao_ataque=0
+        print('Posição {0}{1} já foi bombardeada!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+    elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==' ':
+        condicao_ataque=1 #ou seja o ataque foi realizado
+        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='A' #nesse caso o ataque atingiu a água
+        mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'azul')
+        print('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+    else:
+        condicao_ataque=1 #ataque realizado
+        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='X' # nesse caso o ataque atingiu uma embarcação
+        mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'vermelho')
+        print ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+
 
 
 #Sorteio início partida#############
@@ -387,9 +388,6 @@ if primeiro_a_jogar==0: #computador inicia
                 print('Opção inválida. Digite um número inteiro.')
         print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
 
-
-
-
         
 
 
@@ -415,13 +413,12 @@ else: #jogador incia
                         break  # Sai do loop se a entrada for válida
                     else:
                         print('Opção inválida. Escolha um número de 1 a 10.')
-            
             else:
                 print('Opção inválida. Digite um número inteiro.')
             print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
             print(ataque_computador(mapa_jogador))
             print("Computador- {0}".format(pais_computador))
-            print(tabuleiro_jogo(mapa_computador))
+            print(tabuleiro_jogo(mapa_fantasma))
             print('\n')
             print("Jogador- {0}".format(pais_jogador))
             print(tabuleiro_jogo(mapa_jogador))
