@@ -78,7 +78,7 @@ CORES = {
 
 def foi_derrotado(matriz):
     for linha in matriz:
-        if 'N' in linha:
+        if '▓' in linha:
             return False
     return True
 
@@ -110,13 +110,13 @@ def aloca_navios(mapa,lista_n_blocos):
                 if aloca==0:
                     i=0
                     while aloca==0 and i<n_blocos:#posição ocupada pelo bloco
-                        if mapa[linha][coluna+i]=='N':
+                        if mapa[linha][coluna+i]=='▓':
                             aloca=-1  #sobreposição de peças
                         i+=1
                         
                 if aloca==0: #quer dizer que é possível alocar o barco (já que aloca não é false)
                     for i in range(0,n_blocos):
-                        mapa[linha][coluna+i]='N'
+                        mapa[linha][coluna+i]='▓'
                     aloca='positivo'
             
             elif orientacao=='v':
@@ -128,12 +128,12 @@ def aloca_navios(mapa,lista_n_blocos):
                 if aloca==0:
                     i=0
                     while aloca==0 and i<n_blocos: #posição ocupada pelo bloco (ver se é possível o bloco ocupar essa posição)
-                        if mapa[linha+i][coluna]=='N':
+                        if mapa[linha+i][coluna]=='▓':
                             aloca=-1 #sobreposição de peças
                         i+=1
                 if aloca==0:  #quer dizer que é possível alocar o barco (já que aloca não é false)
                     for i in range(0,n_blocos):
-                        mapa[linha+i][coluna]='N'
+                        mapa[linha+i][coluna]='▓'
                     aloca='positivo'
     
     return mapa 
@@ -145,20 +145,20 @@ def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
                 return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
     
         for i in range(0,n_blocos):#posição ocupada pelo bloco
-            if mapa[linha][coluna+i]=='N':
+            if mapa[linha][coluna+i]=='▓':
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
-                mapa[linha][coluna+i]=cor('N','verde')
+                mapa[linha][coluna+i]=cor('▓','verde')
     
     elif orientacao=='v':
         for i in range(0,n_blocos): #posição ocupada pelo bloco
             if (linha+i)>len(mapa)-1:
                 return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
         for i in range(0,n_blocos): #posição ocupada pelo bloco
-            if mapa[linha+i][coluna]=='N':
+            if mapa[linha+i][coluna]=='▓':
                 return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
             else:
-                mapa[linha+i][coluna]=cor('N','verde')
+                mapa[linha+i][coluna]=cor('▓','verde')
     return ('Navio colocado!')
 
 def cria_mapa(dimensao):

@@ -1,4 +1,4 @@
-print('\u001b[31m▓▓')
+print('\u001b[31m▓▓	█\u001b[0m')
 #while n_nacao!=1 and n_nacao!=2 and n_nacao!=3 and n_nacao!=4 and n_nacao!=5:
  #   n_nacao=input('Qual o número da nação da sua frota?')
     #if is_numero(n_nacao):
