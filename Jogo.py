@@ -249,14 +249,10 @@ print(tabuleiro_jogo(mapa_jogador))
 
 
 #DISTRIBUIÇÃO PEÇAS PARA JOGADORES, POR PAÍS ESCOLHIDO############################
-dic_frota_computador=PAISES[pais_computador] #frota do computador é um dicionário
-lista_n_blocos_frota_computador=[] #para alocar os navios no mapa
-#for tipo_barco,quantidade in dic_frota_computador.items():
-#    for i in range(0,quantidade):
-#        lista_n_blocos_frota_computador.append(CONFIGURACAO[tipo_barco])
-for tipo_barco in dic_frota_computador.keys():
+dic_frota_computador = PAISES[pais_computador]  # Frota do computador é um dicionário
+lista_n_blocos_frota_computador = []  # Para alocar os navios no mapa
+for tipo_barco, quantidade in dic_frota_computador.items():
     lista_n_blocos_frota_computador.append(CONFIGURACAO[tipo_barco])
-
 
 
 
