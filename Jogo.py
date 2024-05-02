@@ -339,18 +339,15 @@ def ataque_computador(mapa_jogador):
 def ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque):
      #condição incial
     if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='A' or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='X': #ou seja esse ponto já foi atacado
-        condicao_ataque=0
-        print('Posição {0}{1} já foi bombardeada!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+        return 'Posição já foi bombardeada!'
     elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==' ':
-        condicao_ataque=1 #ou seja o ataque foi realizado
         mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='A' #nesse caso o ataque atingiu a água
         mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'azul')
-        print('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+        return('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador,linha_atacada_jogador))
     else:
-        condicao_ataque=1 #ataque realizado
         mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='X' # nesse caso o ataque atingiu uma embarcação
         mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'vermelho')
-        print ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador,linha_atacada_jogador))
+        return ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador,linha_atacada_jogador))
 
 
 
@@ -365,29 +362,35 @@ if primeiro_a_jogar==0: #computador inicia
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
         print("Coordenadas do seu disparo")
-        while True:
-            coluna_atacada_jogador=input('Letra:')
-            if is_numero(coluna_atacada_jogador):
-                print('Opção inválida. Digite uma letra.')
-            else: 
-                if  coluna_atacada_jogador in dic_coluna:
-                    n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
-                    break  # Sai do loop se a entrada for válida
+        condicao_ataque=0
+        while condicao_ataque==0:
+            while True:
+                coluna_atacada_jogador=input('Letra:')
+                if is_numero(coluna_atacada_jogador):
+                    print('Opção inválida. Digite uma letra.')
+                else: 
+                    if  coluna_atacada_jogador in dic_coluna:
+                        n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
+                        break  # Sai do loop se a entrada for válida
+                    else:
+                        print('Opção inválida. Escolha uma letra de A a J.')
+            while True:
+                linha_atacada_jogador=input("Linha:")
+                if is_numero(linha_atacada_jogador):
+                    linha_atacada_jogador= int(linha_atacada_jogador)
+                    if 1 <= linha_atacada_jogador <= 10:
+                        linha_atacada_jogador-=1
+                        break  # Sai do loop se a entrada for válida
+                    else:
+                        print('Opção inválida. Escolha um número de 1 a 10.')
+                
                 else:
-                    print('Opção inválida. Escolha uma letra de A a J.')
-        while True:
-            linha_atacada_jogador=input("Linha:")
-            if is_numero(linha_atacada_jogador):
-                linha_atacada_jogador= int(linha_atacada_jogador)
-                if 1 <= linha_atacada_jogador <= 10:
-                    linha_atacada_jogador-=1
-                    break  # Sai do loop se a entrada for válida
-                else:
-                    print('Opção inválida. Escolha um número de 1 a 10.')
-            
+                    print('Opção inválida. Digite um número inteiro.')
+            print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
+            if ataque_jogador=='Posição já foi bombardeada!':
+                condicao_ataque=0 #ataque não realizado
             else:
-                print('Opção inválida. Digite um número inteiro.')
-        print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
+                condicao_ataque=1 #ataque realizado
 
         
 
@@ -395,34 +398,40 @@ if primeiro_a_jogar==0: #computador inicia
 else: #jogador incia
     while foi_derrotado(tabuleiro_jogo(mapa_computador))==False and foi_derrotado(tabuleiro_jogo(mapa_jogador))==False:
         print("Coordenadas do seu disparo")
-        while True:
-            coluna_atacada_jogador=input('Letra:')
-            if is_numero(coluna_atacada_jogador):
-                print('Opção inválida. Digite uma letra.')
-            else: 
-                if  coluna_atacada_jogador in dic_coluna:
-                    n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
-                    break  # Sai do loop se a entrada for válida
+        condicao_ataque=0
+        while condicao_ataque==0:
+            while True:
+                coluna_atacada_jogador=input('Letra:')
+                if is_numero(coluna_atacada_jogador):
+                    print('Opção inválida. Digite uma letra.')
+                else: 
+                    if  coluna_atacada_jogador in dic_coluna:
+                        n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
+                        break  # Sai do loop se a entrada for válida
+                    else:
+                        print('Opção inválida. Escolha uma letra de A a J.')
+            while True:
+                linha_atacada_jogador=input("Linha:")
+                if is_numero(linha_atacada_jogador):
+                    linha_atacada_jogador= int(linha_atacada_jogador)
+                    if 1 <= linha_atacada_jogador <= 10:
+                        linha_atacada_jogador-=1
+                        break  # Sai do loop se a entrada for válida
+                    else:
+                        print('Opção inválida. Escolha um número de 1 a 10.')
                 else:
-                    print('Opção inválida. Escolha uma letra de A a J.')
-        while True:
-            linha_atacada_jogador=input("Linha:")
-            if is_numero(linha_atacada_jogador):
-                linha_atacada_jogador= int(linha_atacada_jogador)
-                if 1 <= linha_atacada_jogador <= 10:
-                    linha_atacada_jogador-=1
-                    break  # Sai do loop se a entrada for válida
+                    print('Opção inválida. Digite um número inteiro.')
+                print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
+                if ataque_jogador=='Posição já foi bombardeada!':
+                    condicao_ataque=0 #ataque não realizado
                 else:
-                    print('Opção inválida. Escolha um número de 1 a 10.')
-            else:
-                print('Opção inválida. Digite um número inteiro.')
-            print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque))
-            print(ataque_computador(mapa_jogador))
-            print("Computador- {0}".format(pais_computador))
-            print(tabuleiro_jogo(mapa_fantasma))
-            print('\n')
-            print("Jogador- {0}".format(pais_jogador))
-            print(tabuleiro_jogo(mapa_jogador))
+                    condicao_ataque=1 #ataque realizado
+        print(ataque_computador(mapa_jogador))
+        print("Computador- {0}".format(pais_computador))
+        print(tabuleiro_jogo(mapa_fantasma))
+        print('\n')
+        print("Jogador- {0}".format(pais_jogador))
+        print(tabuleiro_jogo(mapa_jogador))
 
 
 print('ebaaaaa cabou')
