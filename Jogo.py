@@ -335,8 +335,9 @@ def ataque_computador(mapa_jogador):
             print ('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada,linha_atacada))
 
 #função ataque jogador:
+
 def ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque):
-    condicao_ataque=0 #condição incial
+     #condição incial
     if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='A' or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=='X': #ou seja esse ponto já foi atacado
         condicao_ataque=0
         print('Posição {0}{1} já foi bombardeada!'.format(coluna_atacada_jogador,linha_atacada_jogador))
@@ -367,22 +368,22 @@ if primeiro_a_jogar==0: #computador inicia
         while True:
             coluna_atacada_jogador=input('Letra:')
             if is_numero(coluna_atacada_jogador):
-                    print('Opção inválida. Digite uma letra.')
+                print('Opção inválida. Digite uma letra.')
             else: 
-                    if  coluna_atacada_jogador in dic_coluna:
-                        n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
-                        break  # Sai do loop se a entrada for válida
-                    else:
-                        print('Opção inválida. Escolha uma letra de A a J.')
+                if  coluna_atacada_jogador in dic_coluna:
+                    n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
+                    break  # Sai do loop se a entrada for válida
+                else:
+                    print('Opção inválida. Escolha uma letra de A a J.')
         while True:
             linha_atacada_jogador=input("Linha:")
             if is_numero(linha_atacada_jogador):
-                    linha_atacada_jogador= int(linha_atacada_jogador)
-                    if 1 <= linha_atacada_jogador <= 10:
-                        linha_atacada_jogador-=1
-                        break  # Sai do loop se a entrada for válida
-                    else:
-                        print('Opção inválida. Escolha um número de 1 a 10.')
+                linha_atacada_jogador= int(linha_atacada_jogador)
+                if 1 <= linha_atacada_jogador <= 10:
+                    linha_atacada_jogador-=1
+                    break  # Sai do loop se a entrada for válida
+                else:
+                    print('Opção inválida. Escolha um número de 1 a 10.')
             
             else:
                 print('Opção inválida. Digite um número inteiro.')
@@ -397,25 +398,25 @@ else: #jogador incia
         while True:
             coluna_atacada_jogador=input('Letra:')
             if is_numero(coluna_atacada_jogador):
-                    print('Opção inválida. Digite uma letra.')
+                print('Opção inválida. Digite uma letra.')
             else: 
-                    if  coluna_atacada_jogador in dic_coluna:
-                        n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
-                        break  # Sai do loop se a entrada for válida
-                    else:
-                        print('Opção inválida. Escolha uma letra de A a J.')
+                if  coluna_atacada_jogador in dic_coluna:
+                    n_coluna_atacada_jogador=dic_coluna[coluna_atacada_jogador]
+                    break  # Sai do loop se a entrada for válida
+                else:
+                    print('Opção inválida. Escolha uma letra de A a J.')
         while True:
             linha_atacada_jogador=input("Linha:")
             if is_numero(linha_atacada_jogador):
-                    linha_atacada_jogador= int(linha_atacada_jogador)
-                    if 1 <= linha_atacada_jogador <= 10:
-                        linha_atacada_jogador-=1
-                        break  # Sai do loop se a entrada for válida
-                    else:
-                        print('Opção inválida. Escolha um número de 1 a 10.')
+                linha_atacada_jogador= int(linha_atacada_jogador)
+                if 1 <= linha_atacada_jogador <= 10:
+                    linha_atacada_jogador-=1
+                    break  # Sai do loop se a entrada for válida
+                else:
+                    print('Opção inválida. Escolha um número de 1 a 10.')
             else:
                 print('Opção inválida. Digite um número inteiro.')
-            print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador))
+            print(ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque))
             print(ataque_computador(mapa_jogador))
             print("Computador- {0}".format(pais_computador))
             print(tabuleiro_jogo(mapa_fantasma))
