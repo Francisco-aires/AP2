@@ -240,6 +240,7 @@ def tabuleiro_jogo(mapa):
 
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
+print('\n')
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
@@ -308,6 +309,7 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
         
         print("Computador- {0}".format(pais_computador))
         print(tabuleiro_jogo(mapa_computador))
+        print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
 
@@ -315,6 +317,7 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
 posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
 print("Computador- {0}".format(pais_computador))
 print(tabuleiro_jogo(mapa_computador))
+print('\n')
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
