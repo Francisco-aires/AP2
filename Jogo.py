@@ -425,3 +425,4 @@ else: #jogador incia
             print(tabuleiro_jogo(mapa_jogador))
 
 
+print('ebaaaaa cabou')
