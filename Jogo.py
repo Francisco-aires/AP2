@@ -110,13 +110,13 @@ def aloca_navios(mapa,lista_n_blocos):
                 if aloca==0:
                     i=0
                     while aloca==0 and i<n_blocos:#posição ocupada pelo bloco
-                        if mapa[linha][coluna+i]==cor('▓''verde'):
+                        if mapa[linha][coluna+i]==cor('▓','verde'):
                             aloca=-1  #sobreposição de peças
                         i+=1
                         
                 if aloca==0: #quer dizer que é possível alocar o barco (já que aloca não é false)
                     for i in range(0,n_blocos):
-                        mapa[linha][coluna+i]=cor('▓''verde')
+                        mapa[linha][coluna+i]=cor('▓','verde')
                     aloca='positivo'
             
             elif orientacao=='v':
@@ -128,12 +128,12 @@ def aloca_navios(mapa,lista_n_blocos):
                 if aloca==0:
                     i=0
                     while aloca==0 and i<n_blocos: #posição ocupada pelo bloco (ver se é possível o bloco ocupar essa posição)
-                        if mapa[linha+i][coluna]==cor('▓''verde'):
+                        if mapa[linha+i][coluna]==cor('▓','verde'):
                             aloca=-1 #sobreposição de peças
                         i+=1
                 if aloca==0:  #quer dizer que é possível alocar o barco (já que aloca não é false)
                     for i in range(0,n_blocos):
-                        mapa[linha+i][coluna]=cor('▓''verde')
+                        mapa[linha+i][coluna]=cor('▓','verde')
                     aloca='positivo'
     
     return mapa 
@@ -323,7 +323,7 @@ def ataque_computador(mapa_jogador):
     while condicao_ataque==0:
         linha_atacada=random.randint(0,9)
         coluna_atacada=random.randint(0,9)
-        if mapa_jogador[linha_atacada][coluna_atacada]==cor('▓''azul') or mapa_jogador[linha_atacada][coluna_atacada]==cor('▓''vermelho'): #ou seja esse ponto já foi atacado
+        if mapa_jogador[linha_atacada][coluna_atacada]==cor('▓','azul') or mapa_jogador[linha_atacada][coluna_atacada]==cor('▓','vermelho'): #ou seja esse ponto já foi atacado
             condicao_ataque=0
         elif mapa_jogador[linha_atacada][coluna_atacada]==' ':
             condicao_ataque=1 #ou seja o ataque foi realizado
@@ -338,14 +338,14 @@ def ataque_computador(mapa_jogador):
 
 def ataque_jogador(mapa_computador,linha_atacada_jogador,n_coluna_atacada_jogador,coluna_atacada_jogador,condicao_ataque):
      #condição incial
-    if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==cor('▓''azul') or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==cor('▓''vermelho'): #ou seja esse ponto já foi atacado
+    if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==cor('▓','azul') or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==cor('▓','vermelho'): #ou seja esse ponto já foi atacado
         return 'Posição já foi bombardeada!'
     elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]==' ':
         mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]='A' #nesse caso o ataque atingiu a água
         mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'azul')
         return('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador,linha_atacada_jogador))
     else:
-        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓''verde') # nesse caso o ataque atingiu uma embarcação
+        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓','verde') # nesse caso o ataque atingiu uma embarcação
         mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador]=cor('▓', 'vermelho')
         return ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador,linha_atacada_jogador))
 
