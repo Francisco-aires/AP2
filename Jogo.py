@@ -141,17 +141,26 @@ def aloca_navios(mapa,lista_n_blocos):
 def posicao_suporta(mapa, n_blocos, linha, coluna, orientacao):
     if orientacao == 'h':
         for i in range(0, n_blocos):  # posição ocupada pelo bloco
-            if coluna + i > len(mapa[linha]) - 1 or mapa[linha][coluna + i] != ' ':
+            if coluna + i > len(mapa[linha]):
                 return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
-            else:
-                mapa[linha][coluna + i] = cor('▓', 'verde')
+        for i in range(0,n_blocos):
+            if mapa[linha][coluna + i] != ' ':
+                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
+        for i in range(0, n_blocos):  # posição ocupada pelo bloco
+            mapa[linha][coluna + i] = cor('▓', 'verde')
+    
+    
     elif orientacao == 'v':
         for i in range(0, n_blocos):  # posição ocupada pelo bloco
-            if linha + i > len(mapa) - 1 or mapa[linha + i][coluna] != ' ':
+            if linha + i > len(mapa) - 1:
                 return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
-            else:
+        for i in range(0, n_blocos):  # posição ocupada pelo bloco
+            if  mapa[linha+i][coluna] != ' ':
+                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças    
+        for i in range(0, n_blocos):
                 mapa[linha + i][coluna] = cor('▓', 'verde')
     return 'Navio colocado!'
+
 
 def cria_mapa(dimensao):
     lista_mapa=[]
