@@ -382,7 +382,6 @@ if primeiro_a_jogar==0: #computador inicia
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
-        print(xswi)
         condicao_ataque=0
         while condicao_ataque==0:
             print("Coordenadas do seu disparo")
@@ -443,7 +442,6 @@ else: #jogador incia
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
-        print(xswi)
 
 vencedor = verificar_vencedor(mapa_jogador,mapa_computador)
 
@@ -453,9 +451,9 @@ if vencedor == 0:
     print('\n')
     print("Jogador- {0}".format(pais_jogador))
     print(tabuleiro_jogo(mapa_jogador))
-    print('################################################################')
-    print('O computador venceu a batalha naval! Melhor sorte na próxima vez')
-    print('################################################################')
+    print('##################################################################')
+    print('#O computador venceu a batalha naval! Melhor sorte na próxima vez#')
+    print('##################################################################')
 else:
     print("Computador- {0}".format(pais_computador))
     print(tabuleiro_jogo(mapa_fantasma))
@@ -463,5 +461,5 @@ else:
     print("Jogador- {0}".format(pais_jogador))
     print(tabuleiro_jogo(mapa_jogador))
     print('################################################################')
-    print('   Parabéns! Você venceu a batalha naval contra o computador!   ')
+    print('#  Parabéns! Você venceu a batalha naval contra o computador!  #')
     print('################################################################')
