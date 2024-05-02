@@ -139,19 +139,23 @@ def aloca_navios(mapa,lista_n_blocos):
     return mapa 
 
 def posicao_suporta(mapa, n_blocos, linha, coluna, orientacao):
-    if orientacao == 'h':
-        for i in range(0, n_blocos):  # posição ocupada pelo bloco
-            if coluna + i > len(mapa[linha]) - 1 or mapa[linha][coluna + i] != ' ':
-                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
-            else:
-                mapa[linha][coluna + i] = cor('▓', 'verde')
-    elif orientacao == 'v':
-        for i in range(0, n_blocos):  # posição ocupada pelo bloco
-            if linha + i > len(mapa) - 1 or mapa[linha + i][coluna] != ' ':
-                return 'Não foi possível colocar a peça nessa posição'  # peça fora do mapa ou sobreposição de peças
-            else:
-                mapa[linha + i][coluna] = cor('▓', 'verde')
-    return 'Navio colocado!'
+    # Verifica se o navio cabe na posição escolhida sem sobrepor ou sair do mapa
+    for i in range(n_blocos):
+        if orientacao == 'h':
+            if coluna + i >= len(mapa[linha]) or mapa[linha][coluna + i] != ' ':
+                return False  # Retorna False se a posição estiver ocupada ou fora do mapa
+        elif orientacao == 'v':
+            if linha + i >= len(mapa) or mapa[linha + i][coluna] != ' ':
+                return False  # Retorna False se a posição estiver ocupada ou fora do mapa
+
+    # Se passou pela verificação, coloca o navio
+    for i in range(n_blocos):
+        if orientacao == 'h':
+            mapa[linha][coluna + i] = cor('▓', 'verde')
+        elif orientacao == 'v':
+            mapa[linha + i][coluna] = cor('▓', 'verde')
+    
+    return True  # Retorna True se o navio foi colocado com sucesso
 
 def cria_mapa(dimensao):
     lista_mapa=[]
@@ -292,11 +296,11 @@ for i in range (0,len(lista_n_blocos_frota_jogador)):
             else:
                 confirma_orientacao="S"
         posicao_peca_jogador=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
-        if posicao_peca_jogador=='Navio colocado!':
+        if posicao_peca_jogador:
             confirma_posicao='S'
-        elif posicao_peca_jogador=='Não foi possível colocar a peça nessa posição':
+        else:
             confirma_posicao='N'
-        print(posicao_peca_jogador)
+        print('posiçao invalida')
         
         print("Computador- {0}".format(pais_computador))
         print(tabuleiro_jogo(mapa_fantasma))
