@@ -322,6 +322,7 @@ print('\n')
 print("Jogador- {0}".format(pais_jogador))
 print(tabuleiro_jogo(mapa_jogador))
 
+
 #função ataque computador
 def ataque_computador(mapa_jogador):
     condicao_ataque = 0
@@ -366,7 +367,6 @@ if primeiro_a_jogar==0: #computador inicia
         print('\n')
         print("Jogador- {0}".format(pais_jogador))
         print(tabuleiro_jogo(mapa_jogador))
-        print("Coordenadas do seu disparo")
         condicao_ataque=0
         while condicao_ataque==0:
             print("Coordenadas do seu disparo")
@@ -390,6 +390,7 @@ if primeiro_a_jogar==0: #computador inicia
                 condicao_ataque=0 #ataque não realizado
             else:
                 condicao_ataque=1 #ataque realizado
+
 
         
 
@@ -429,4 +430,3 @@ else: #jogador incia
         print(tabuleiro_jogo(mapa_jogador))
 
 
-print('ebaaaaa cabou')
