@@ -396,7 +396,7 @@ if primeiro_a_jogar==0: #computador inicia
 
 
 else: #jogador incia
-    while foi_derrotado(tabuleiro_jogo(mapa_computador))==False and foi_derrotado(tabuleiro_jogo(mapa_jogador))==False:
+    while foi_derrotado(mapa_computador)==False and foi_derrotado(mapa_jogador)==False:
         print("Coordenadas do seu disparo")
         condicao_ataque=0
         while condicao_ataque==0:
