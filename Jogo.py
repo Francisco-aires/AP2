@@ -325,3 +325,24 @@ print('Iniciando a batalha naval!')
 contagem_regressiva(5)
 
 
+def ataque_computador(mapa_jogador):
+    condicao_ataque=0 #condição incial
+    resultado=0 #resultado do ataque
+    while condicao_ataque==0:
+        linha_atacada=random.randint(0,9)
+        coluna_atacada=random.randint(0,9)
+        if mapa_jogador[linha_atacada][coluna_atacada]=='A' or mapa_jogador[linha_atacada][coluna_atacada]=='X': #ou seja esse ponto já foi atacado
+            condicao_ataque=0
+        elif mapa_jogador[linha_atacada][coluna_atacada]==' ':
+            condicao_ataque=1 #ou seja o ataque foi realizado
+            mapa_jogador[linha_atacada][coluna_atacada]='A' #nesse caso o ataque atingiu a água
+            print('Computador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada,linha_atacada))
+        else:
+            condicao_ataque=1 #ataque realizado
+            mapa_jogador[linha_atacada][coluna_atacada]='X' # nesse caso o ataque atingiu uma embarcação
+            print ('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada,linha_atacada))
+            
+
+
+        
+
