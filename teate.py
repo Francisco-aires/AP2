@@ -22,3 +22,25 @@ print('\u001b[31m▓▓	█\u001b[0m')
          #   print('Opção inválida')
    # else:
     #    print('Opção inválida')
+def posicao_suporta(mapa,n_blocos,linha,coluna,orientacao):
+    if orientacao=='h':
+        for i in range(0,n_blocos): #posição ocupada pelo bloco
+            if (coluna+i)>len(mapa[linha])-1:
+                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
+    
+        for i in range(0,n_blocos):#posição ocupada pelo bloco
+            if mapa[linha][coluna+i]=='▓':
+                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
+            else:
+                mapa[linha][coluna+i]=cor('▓','verde')
+    
+    elif orientacao=='v':
+        for i in range(0,n_blocos): #posição ocupada pelo bloco
+            if (linha+i)>len(mapa)-1:
+                return ('Não foi possível colocar a peça nessa posição') #peça fora do mapa
+        for i in range(0,n_blocos): #posição ocupada pelo bloco
+            if mapa[linha+i][coluna]=='▓':
+                return ('Não foi possível colocar a peça nessa posição') #sobreposição de peças
+            else:
+                mapa[linha+i][coluna]=cor('▓','verde')
+    return ('Navio colocado!')
