@@ -418,9 +418,24 @@ while fim ==0:
         print('#  Parabéns! Você venceu a batalha naval contra o computador!  #')
         print('################################################################')
         print('################################################################')
+    
+    condicao_fim=0
+    while condicao_fim==0:
+        soun = input('Quer jogar de novo (S/N)? ')
+        if soun == 'N' or soun == 'n':
+            print('Obrigado por jogar! Até a próxima!')
+            fim = 1
+            condicao_fim=1
+        elif soun=='S' or soun=='s':
+            fim=0
+            condicao_fim=1
+        else:
+            print('Opção inválida, escreva S ou N!')
 
-    print('#############################################')
-    print('recomeçando a batalha naval!')
-    print('se não quiser jogar mais digite fim quando escolher o país')
-    contagem_regressiva(5)
-    print('#####################################')
+    if fim == 1:
+        break
+    else:
+        print('##################SSSSS###########################')
+        print('recomeçando a batalha naval!')
+        print('#####################################')
+        contagem_regressiva(5)
