@@ -216,9 +216,6 @@ while fim ==0:
                 break  # Sai do loop se a entrada for válida
             else:
                 print('Opção inválida. Escolha um número de 1 a 5.')
-        elif n_nacao == 'acabar'or n_nacao == 'fim' or n_nacao == 'break':
-            fim = 1
-            break
         else:
             print('Opção inválida. Digite um número inteiro.')
     print("Agora é vez de alocar seus navios de guerra!")
