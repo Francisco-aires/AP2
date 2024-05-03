@@ -349,11 +349,11 @@ def ataque_computador(mapa_jogador):
         elif mapa_jogador[linha_atacada][coluna_atacada] == ' ':
             condicao_ataque = 1
             mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'azul')
-            print('Computador -------->>>>>>>    {0}{1}    Água!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
+            return('Computador -------->>>>>>>    {0}{1}    Água!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
         else:
             condicao_ataque = 1
             mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'vermelho')
-            print('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
+            return('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
 
 #função ataque jogador:
 
