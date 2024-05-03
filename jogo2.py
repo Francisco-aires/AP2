@@ -362,6 +362,7 @@ while fim ==0:
                     else:
                         print('Opção inválida. Escolha um número de 1 a 10.')
                 resultado_ataque = ataque_jogador(mapa_computador, linha_atacada_jogador, n_coluna_atacada_jogador, coluna_atacada_jogador)
+                print(resultado_ataque)
                 if resultado_ataque=='Posição já foi bombardeada!':
                     condicao_ataque=0 #ataque não realizado
                 else:
