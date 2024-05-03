@@ -327,11 +327,11 @@ while fim ==0:
         elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == ' ':
             mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] =cor('▓', 'azul')
             mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'azul')
-            return 'Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador, linha_atacada_jogador)
+            return ('Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador, linha_atacada_jogador))
         else:
             mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
             mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
-            return 'Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador, linha_atacada_jogador)
+            return ('Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador, linha_atacada_jogador))
     xswi = (tabuleiro_jogo(mapa_computador))
     print(xswi)
     #Sorteio início partida#############
