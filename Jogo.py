@@ -468,3 +468,9 @@ while fim ==0:
         print('################################################################')
         print('#  Parabéns! Você venceu a batalha naval contra o computador!  #')
         print('################################################################')
+
+    print('#############################################')
+    print('recomeçando a batalha naval!')
+    print('se não quiser jogar mais digite fim quando escolher o país')
+    contagem_regressiva(5)
+    print('#####################################')
