@@ -195,6 +195,7 @@ while fim ==0:
     for pais in PAISES:
         lista_paises.append(pais)
     pais_computador=random.choice(lista_paises)
+    print('\n')
     print("BATALHA NAVAL INSPER")
     print('\n')
     print("Iniciando o jogo!")
