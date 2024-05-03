@@ -285,116 +285,116 @@ while fim ==0:
 
 
 
-#ALOCAR PEÇAS###############################################
-for i in range (0,len(lista_n_blocos_frota_jogador)):
-    n_blocos=lista_n_blocos_frota_jogador[i]
-    tipo_peca=lista_frota_jogador[i]
-    confirma_posicao='N'
-    while confirma_posicao=='N':
-        print("alocar: {0} ({1} blocos)".format(tipo_peca,n_blocos))
-        confirma_letra="N"
-        confirma_linha="N"
-        confirma_orientacao="N"
-        while confirma_letra=="N":
-            letra=input('Informe a letra: ')
-            if letra in dic_coluna:
-                confirma_letra="S"
-                coluna=dic_coluna[letra]
+    #ALOCAR PEÇAS###############################################
+    for i in range (0,len(lista_n_blocos_frota_jogador)):
+        n_blocos=lista_n_blocos_frota_jogador[i]
+        tipo_peca=lista_frota_jogador[i]
+        confirma_posicao='N'
+        while confirma_posicao=='N':
+            print("alocar: {0} ({1} blocos)".format(tipo_peca,n_blocos))
+            confirma_letra="N"
+            confirma_linha="N"
+            confirma_orientacao="N"
+            while confirma_letra=="N":
+                letra=input('Informe a letra: ')
+                if letra in dic_coluna:
+                    confirma_letra="S"
+                    coluna=dic_coluna[letra]
+                else:
+                    print("Letra inválida")
+            
+            while confirma_linha=="N":
+                linha=input('Informe a linha: ')
+                if linha in dic_n_linhas:
+                    confirma_linha="S"
+                    linha=dic_n_linhas[linha]
+                else:
+                    print("Linha inválida")
+            while confirma_orientacao=='N':   
+                orientacao = input('Informe a Orientação [v | h]: ')
+                if orientacao!='v' and orientacao!='h' and orientacao!='V' and orientacao!='H':
+                    print ("Orientação inválida")
+                else:
+                    confirma_orientacao="S"
+            posicao_peca_jogador=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
+            if posicao_peca_jogador:
+                confirma_posicao='S'
             else:
-                print("Letra inválida")
-        
-        while confirma_linha=="N":
-            linha=input('Informe a linha: ')
-            if linha in dic_n_linhas:
-                confirma_linha="S"
-                linha=dic_n_linhas[linha]
+                confirma_posicao='N'
+            print('posiçao invalida')
+            
+            print("Computador- {0}".format(pais_computador))
+            print(tabuleiro_jogo(mapa_fantasma))
+            print('\n')
+            print("Jogador- {0}".format(pais_jogador))
+            print(tabuleiro_jogo(mapa_jogador))
+
+
+    posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
+
+
+    print('Iniciando a batalha naval!')
+    contagem_regressiva(5)
+
+    print("Computador- {0}".format(pais_computador))
+    print(tabuleiro_jogo(mapa_fantasma))
+    print('\n')
+    print("Jogador- {0}".format(pais_jogador))
+    print(tabuleiro_jogo(mapa_jogador))
+
+
+    #função ataque computador
+    def ataque_computador(mapa_jogador):
+        condicao_ataque = 0
+        while condicao_ataque == 0:
+            linha_atacada = random.randint(0, 9)
+            coluna_atacada = random.randint(0, 9)
+            if mapa_jogador[linha_atacada][coluna_atacada] == cor('▓', 'azul') or mapa_jogador[linha_atacada][coluna_atacada] == cor('▓', 'vermelho'):
+                condicao_ataque = 0
+            elif mapa_jogador[linha_atacada][coluna_atacada] == ' ':
+                condicao_ataque = 1
+                mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'azul')
+                return('Computador -------->>>>>>>    {0}{1}    Água!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
             else:
-                print("Linha inválida")
-        while confirma_orientacao=='N':   
-            orientacao = input('Informe a Orientação [v | h]: ')
-            if orientacao!='v' and orientacao!='h' and orientacao!='V' and orientacao!='H':
-                print ("Orientação inválida")
-            else:
-                confirma_orientacao="S"
-        posicao_peca_jogador=posicao_suporta(mapa_jogador,n_blocos,linha,coluna,orientacao)
-        if posicao_peca_jogador:
-            confirma_posicao='S'
+                condicao_ataque = 1
+                mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'vermelho')
+                return('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
+
+    #função ataque jogador:
+
+    def ataque_jogador(mapa_computador, linha_atacada_jogador, n_coluna_atacada_jogador, coluna_atacada_jogador):
+        if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == cor('▓','azul') or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == cor('▓','vermelho'):
+            return 'Posição já foi bombardeada!'
+        elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == ' ':
+            mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] =cor('▓', 'azul')
+            mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'azul')
+            return 'Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador, linha_atacada_jogador)
         else:
-            confirma_posicao='N'
-        print('posiçao invalida')
-        
-        print("Computador- {0}".format(pais_computador))
-        print(tabuleiro_jogo(mapa_fantasma))
-        print('\n')
-        print("Jogador- {0}".format(pais_jogador))
-        print(tabuleiro_jogo(mapa_jogador))
+            mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
+            mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
+            return 'Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador, linha_atacada_jogador)
 
 
-posicao_peca_computador=aloca_navios(mapa_computador,lista_n_blocos_frota_computador)
-
-
-print('Iniciando a batalha naval!')
-contagem_regressiva(5)
-
-print("Computador- {0}".format(pais_computador))
-print(tabuleiro_jogo(mapa_fantasma))
-print('\n')
-print("Jogador- {0}".format(pais_jogador))
-print(tabuleiro_jogo(mapa_jogador))
-
-
-#função ataque computador
-def ataque_computador(mapa_jogador):
-    condicao_ataque = 0
-    while condicao_ataque == 0:
-        linha_atacada = random.randint(0, 9)
-        coluna_atacada = random.randint(0, 9)
-        if mapa_jogador[linha_atacada][coluna_atacada] == cor('▓', 'azul') or mapa_jogador[linha_atacada][coluna_atacada] == cor('▓', 'vermelho'):
-            condicao_ataque = 0
-        elif mapa_jogador[linha_atacada][coluna_atacada] == ' ':
-            condicao_ataque = 1
-            mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'azul')
-            return('Computador -------->>>>>>>    {0}{1}    Água!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
-        else:
-            condicao_ataque = 1
-            mapa_jogador[linha_atacada][coluna_atacada] = cor('▓', 'vermelho')
-            return('Computador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(ALFABETO[coluna_atacada], linha_atacada + 1))
-
-#função ataque jogador:
-
-def ataque_jogador(mapa_computador, linha_atacada_jogador, n_coluna_atacada_jogador, coluna_atacada_jogador):
-    if mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == cor('▓','azul') or mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == cor('▓','vermelho'):
-        return 'Posição já foi bombardeada!'
-    elif mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] == ' ':
-        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] =cor('▓', 'azul')
-        mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'azul')
-        return 'Jogador -------->>>>>>>    {0}{1}    Água!'.format(coluna_atacada_jogador, linha_atacada_jogador)
-    else:
-        mapa_computador[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
-        mapa_fantasma[linha_atacada_jogador][n_coluna_atacada_jogador] = cor('▓', 'vermelho')
-        return 'Jogador -------->>>>>>>    {0}{1}    BOOOOOMMMMMMMMM!!!!!!!!!!'.format(coluna_atacada_jogador, linha_atacada_jogador)
-
-
-xswi = (tabuleiro_jogo(mapa_computador))
-print(xswi)
-#Sorteio início partida#############
-primeiro_a_jogar=random.randint(0,1)
-if primeiro_a_jogar==0: #computador inicia
-    while foi_derrotado(mapa_computador)==False and foi_derrotado(mapa_jogador)==False:
-        print(ataque_computador(mapa_jogador))
-        print("Computador- {0}".format(pais_computador))
-        print(tabuleiro_jogo(mapa_fantasma))
-        print('\n')
-        print("Jogador- {0}".format(pais_jogador))
-        print(tabuleiro_jogo(mapa_jogador))
-        condicao_ataque=0
-        while condicao_ataque==0:
-            print("Coordenadas do seu disparo")
-            while True:
-                coluna_atacada_jogador = input('Letra:')
-                if coluna_atacada_jogador in dic_coluna:
-                    n_coluna_atacada_jogador = dic_coluna[coluna_atacada_jogador]
-                    break  # sai se for valido
+    xswi = (tabuleiro_jogo(mapa_computador))
+    print(xswi)
+    #Sorteio início partida#############
+    primeiro_a_jogar=random.randint(0,1)
+    if primeiro_a_jogar==0: #computador inicia
+        while foi_derrotado(mapa_computador)==False and foi_derrotado(mapa_jogador)==False:
+            print(ataque_computador(mapa_jogador))
+            print("Computador- {0}".format(pais_computador))
+            print(tabuleiro_jogo(mapa_fantasma))
+            print('\n')
+            print("Jogador- {0}".format(pais_jogador))
+            print(tabuleiro_jogo(mapa_jogador))
+            condicao_ataque=0
+            while condicao_ataque==0:
+                print("Coordenadas do seu disparo")
+                while True:
+                    coluna_atacada_jogador = input('Letra:')
+                    if coluna_atacada_jogador in dic_coluna:
+                        n_coluna_atacada_jogador = dic_coluna[coluna_atacada_jogador]
+                        break  # sai se for valido
     #ALOCAR PEÇAS###############################################
     for i in range (0,len(lista_n_blocos_frota_jogador)):
         n_blocos=lista_n_blocos_frota_jogador[i]
@@ -579,8 +579,13 @@ if primeiro_a_jogar==0: #computador inicia
         print('#  Parabéns! Você venceu a batalha naval contra o computador!  #')
         print('################################################################')
 
-    print('#############################################')
+    soun = input('Quer jogar de novo (S/N)? ')
+    if soun == 'N' or soun == 'n':
+        print('Obrigado por jogar! Até a próxima!')
+        fim = 1
+    if fim == 1:
+        break
+    print('##################SSSSS###########################')
     print('recomeçando a batalha naval!')
-    print('se não quiser jogar mais digite fim quando escolher o país')
-    contagem_regressiva(5)
     print('#####################################')
+    contagem_regressiva(5)
