@@ -585,7 +585,8 @@ while fim ==0:
         fim = 1
     if fim == 1:
         break
-    print('##################SSSSS###########################')
+    print('#############################################')
     print('recomeçando a batalha naval!')
     print('#####################################')
     contagem_regressiva(5)
+ 
